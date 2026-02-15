@@ -1,5 +1,6 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UsersCategory } from 'src/users-category/users-category.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Users {
@@ -11,6 +12,9 @@ export class Users {
 
   @Column()
   lastName: string;
+
+  @ManyToOne(() => UsersCategory, category => category.users)
+  category: UsersCategory;
 
   @Column({ default: true })
   isActive: boolean;

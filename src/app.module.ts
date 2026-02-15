@@ -7,6 +7,8 @@ import { VouchersService } from './vouchers/vouchers.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './users/users.entity';
+import { UsersCategory } from './users-category/users-category.entity';
+import { UsersCategoryModule } from './users-category/users-category.module';
 
 @Module({
   imports: [
@@ -17,11 +19,12 @@ import { Users } from './users/users.entity';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [Users],
+      entities: [Users, UsersCategory],
       synchronize: true,
     }),
     AnimalsModule,
-    UsersModule],
+    UsersModule,
+    UsersCategoryModule],
   controllers: [AppController, VouchersController],
   providers: [AppService, VouchersService],
 })
