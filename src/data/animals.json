@@ -1,0 +1,53 @@
+[
+  {
+    "id": "a1",
+    "name": "Milo",
+    "species": "Dog",
+    "breed": "Beagle",
+    "age": 3,
+    "sex": "Male",
+    "color": "Tricolor",
+    "vaccinated": true,
+    "neutered": true,
+    "weightKg": 12.5,
+    "arrivalDate": "2025-11-02T10:15:00.000Z",
+    "microchip": "982000123456789",
+    "tags": ["friendly", "good-with-kids", "house-trained"],
+    "notes": "Loves walks and treats. Responds to basic commands.",
+    "status": "available"
+  },
+  {
+    "id": "a2",
+    "name": "Luna",
+    "species": "Cat",
+    "breed": "Siamese",
+    "age": 2,
+    "sex": "Female",
+    "color": "Seal Point",
+    "vaccinated": true,
+    "neutered": false,
+    "weightKg": 4.2,
+    "arrivalDate": "2026-01-09T14:30:00.000Z",
+    "microchip": null,
+    "tags": ["independent", "indoor"],
+    "notes": "Shy at first but warms up quickly.",
+    "status": "fostered"
+  },
+  {
+    "id": "a3",
+    "name": "Kiki",
+    "species": "Parrot",
+    "breed": "African Grey",
+    "age": 5,
+    "sex": "Female",
+    "color": "Grey",
+    "vaccinated": false,
+    "neutered": null,
+    "weightKg": 0.4,
+    "arrivalDate": "2024-07-21T09:00:00.000Z",
+    "microchip": null,
+    "tags": ["friendly", "talkative", "requires-attention"],
+    "notes": "Requires experienced owner. Prefers calm environments.",
+    "status": "available"
+  }
+]
