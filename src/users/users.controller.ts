@@ -12,8 +12,6 @@ export class UsersController {
     @Get("")
     getAllUsers() {
         try {
-
-
             const users = this.userService.getAllUsers()
             return users;
         }
@@ -28,16 +26,34 @@ export class UsersController {
     }
 
     @Post()
-    async createUser(@Body("firstName") firstName: string, @Body("lastName") lastName: string, @Body("category") category: UsersCategory) {
-        const user = this.userService.createUser(firstName, lastName, category)
-        await console.log("User created : ", user)
+    async createUser(@Body("firstName") firstName: string, @Body("lastName") lastName: string, @Body("categoryId") categoryId: number) {
+        const user = await this.userService.createUser(firstName, lastName, categoryId)
+        console.log("User created : ", user)
         return user;
+    }
+
+    @Get(":id")
+    async getOneUser(@Param("id", ParseIntPipe) id: string){
+        try {
+            const user = await this.userService.findOne(parseInt(id))
+            return user;
+        } catch (error) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.NOT_FOUND,
+                    error: "User with this id not found"
+                }, HttpStatus.NOT_FOUND, {
+                    cause: error
+                }
+            )
+            
+        }
     }
 
     @Delete(":id")
     async deleteUser(@Param("id", ParseIntPipe) id: number) {
         try {
-            const deletedUser = await this.userService.remove(id)
+            const deletedUser = await this.userService.deleteUser(id)
             return deletedUser.affected === 1 ? {
                 status: HttpStatus.OK,
                 message: "User deleted successfully"

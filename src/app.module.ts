@@ -9,6 +9,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './users/users.entity';
 import { UsersCategory } from './users-category/users-category.entity';
 import { UsersCategoryModule } from './users-category/users-category.module';
+import { UsersAuthController } from './users-auth/users-auth.controller';
+import { UsersAuthService } from './users-auth/users-auth.service';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import { UsersCategoryModule } from './users-category/users-category.module';
     AnimalsModule,
     UsersModule,
     UsersCategoryModule],
-  controllers: [AppController, VouchersController],
-  providers: [AppService, VouchersService],
+  controllers: [AppController, VouchersController, UsersAuthController],
+  providers: [AppService, VouchersService, UsersAuthService],
 })
 export class AppModule {}

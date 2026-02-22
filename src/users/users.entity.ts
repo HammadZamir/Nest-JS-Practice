@@ -13,6 +13,9 @@ export class Users {
   @Column()
   lastName: string;
 
+  @Column({select: false})
+  password: string;
+
   @ManyToOne(() => UsersCategory, category => category.users)
   category: UsersCategory;
 

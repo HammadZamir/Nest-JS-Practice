@@ -11,22 +11,29 @@ export class UsersService {
   constructor(
     @InjectRepository(Users)
     private usersRepository: Repository<Users>,
+    @InjectRepository(UsersCategory)
+    private userCategoryRepository: Repository<UsersCategory>,
   ) {}
 
   getAllUsers(){
     return this.usersRepository.find({relations: ['category']});
   }
 
-  createUser(firstName: string, lastName: string, category: UsersCategory){
-    const newUser = this.usersRepository.save(({firstName, lastName, category}))
+  async createUser(firstName: string, lastName: string, categoryId: number){
+    const category = await this.userCategoryRepository.findOneBy({ id: categoryId });
+    console.log("Found category : ", category)
+    if(!category){
+      return "Category with this id not found";
+    }
+    const newUser = await this.usersRepository.save({ firstName, lastName, category });
     return newUser;
   }
 
   findOne(id: number): Promise<Users | null> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOne({ where: { id }, relations: ['category'] });
   }
 
-  async remove(id: number): Promise<DeleteResult> {
+  async deleteUser(id: number): Promise<DeleteResult> {
     return await this.usersRepository.delete(id);
   }
 }
