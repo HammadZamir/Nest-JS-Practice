@@ -9,20 +9,18 @@ import { DeleteResult } from 'typeorm/browser';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(Users)
-    private usersRepository: Repository<Users>,
-    @InjectRepository(UsersCategory)
-    private userCategoryRepository: Repository<UsersCategory>,
-  ) {}
+    @InjectRepository(Users) private usersRepository: Repository<Users>,
+    @InjectRepository(UsersCategory) private userCategoryRepository: Repository<UsersCategory>,
+  ) { }
 
-  getAllUsers(){
-    return this.usersRepository.find({relations: ['category']});
+  getAllUsers() {
+    return this.usersRepository.find({ relations: ['category'] });
   }
 
-  async createUser(firstName: string, lastName: string, categoryId: number){
+  async createUser(firstName: string, lastName: string, categoryId: number) {
     const category = await this.userCategoryRepository.findOneBy({ id: categoryId });
     console.log("Found category : ", category)
-    if(!category){
+    if (!category) {
       return "Category with this id not found";
     }
     const newUser = await this.usersRepository.save({ firstName, lastName, category });
