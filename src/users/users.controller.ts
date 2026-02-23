@@ -1,13 +1,16 @@
-import { Body, Controller, Delete, Get, HttpException, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, ParseIntPipe, Post, UseGuards } from '@nestjs/common';
 import { Users } from './users.interface';
 import { UsersService } from './users.service';
 import { response } from 'express';
 import { UsersCategory } from 'src/users-category/users-category.entity';
 import { HttpStatus } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/users-auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService: UsersService) { }
+
 
     @Get("")
     getAllUsers() {
@@ -33,7 +36,7 @@ export class UsersController {
     }
 
     @Get(":id")
-    async getOneUser(@Param("id", ParseIntPipe) id: string){
+    async getOneUser(@Param("id", ParseIntPipe) id: string) {
         try {
             const user = await this.userService.findOne(parseInt(id))
             return user;
@@ -43,10 +46,10 @@ export class UsersController {
                     status: HttpStatus.NOT_FOUND,
                     error: "User with this id not found"
                 }, HttpStatus.NOT_FOUND, {
-                    cause: error
-                }
+                cause: error
+            }
             )
-            
+
         }
     }
 
@@ -67,8 +70,8 @@ export class UsersController {
                     status: HttpStatus.NOT_FOUND,
                     error: "User with this id not found"
                 }, HttpStatus.NOT_FOUND, {
-                    cause: error
-                }
+                cause: error
+            }
             )
 
         }
