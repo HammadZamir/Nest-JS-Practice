@@ -11,6 +11,7 @@ import { UsersCategory } from './users-category/users-category.entity';
 import { UsersCategoryModule } from './users-category/users-category.module';
 import { UsersAuthController } from './users-auth/users-auth.controller';
 import { UsersAuthService } from './users-auth/users-auth.service';
+import { UsersAuthModule } from './users-auth/users-auth.module';
 
 @Module({
   imports: [
@@ -26,8 +27,9 @@ import { UsersAuthService } from './users-auth/users-auth.service';
     }),
     AnimalsModule,
     UsersModule,
-    UsersCategoryModule],
-  controllers: [AppController, VouchersController, UsersAuthController],
-  providers: [AppService, VouchersService, UsersAuthService],
+    UsersCategoryModule,
+    UsersAuthModule],
+  controllers: [AppController, VouchersController],
+  providers: [AppService, VouchersService],
 })
 export class AppModule {}

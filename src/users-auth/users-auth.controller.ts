@@ -5,7 +5,7 @@ import { UsersAuthService } from './users-auth.service';
 export class UsersAuthController {
     constructor(private readonly usersAuthService: UsersAuthService) { }
 
-    @Post('resister')
+    @Post('signup')
     async registerUser(@Body("firstName") firstName: string, @Body("lastName") lastName: string, @Body("email") email: string, @Body("password") password: string, @Body("categoryId") categoryId: number) {
         try {
             const user = await this.usersAuthService.registerUser(firstName, lastName, email, password, categoryId)
