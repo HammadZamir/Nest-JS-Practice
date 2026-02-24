@@ -13,8 +13,6 @@ export class UsersService {
     @InjectRepository(UsersCategory) private userCategoryRepository: Repository<UsersCategory>,
   ) { }
 
-  
-
   getAllUsers() {
     return this.usersRepository.find({ relations: ['category'] });
   }
