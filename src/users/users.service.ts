@@ -13,7 +13,7 @@ export class UsersService {
     @InjectRepository(UsersCategory) private userCategoryRepository: Repository<UsersCategory>,
   ) { }
 
-  // test commit
+  
 
   getAllUsers() {
     return this.usersRepository.find({ relations: ['category'] });
